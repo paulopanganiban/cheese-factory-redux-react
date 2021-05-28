@@ -4,17 +4,17 @@ import styled from 'styled-components'
 import { auth, provider } from '../firebase'
 import { logInWithGoogleProviderAsync, logOutAsync, login, logout } from '../features/auth/authSlice'
 const Header = () => {
-
+    const authState = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    auth.onAuthStateChanged(function(user) {
-        if(user) {
+    auth.onAuthStateChanged(function (user) {
+        if (user) {
             dispatch(login(user))
             console.log('from authstate changed')
         } else {
             dispatch(logout(false))
         }
     })
-   
+
     function handleSignIn(e) {
         e.preventDefault()
         auth.signInWithPopup(provider)
@@ -31,7 +31,11 @@ const Header = () => {
                         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
                     </a>
 
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <a role="button"
+                        class="navbar-burger"
+                        aria-label="menu"
+                        aria-expanded="false"
+                        data-target="navbarBasicExample">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -49,12 +53,18 @@ const Header = () => {
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary" onClick={handleSignIn}>
-                                <strong>Log in</strong>
-                            </a>
-                            <a class="button is-light" onClick={handleSignOut}>
-                                Log out
-          </a>
+                            {!authState.isLoggedIn ? (
+                                <a class="button is-primary" onClick={handleSignIn}>
+                                    <strong>Log in</strong>
+                                </a>
+                            ) : (
+                                <a class="button is-light" onClick={handleSignOut}>
+                                    Log out
+                                </a>
+                            )}
+
+
+
                         </div>
                     </div>
                 </div>
