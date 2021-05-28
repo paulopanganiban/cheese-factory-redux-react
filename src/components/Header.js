@@ -8,7 +8,7 @@ const Header = () => {
     const dispatch = useDispatch()
     auth.onAuthStateChanged(function (user) {
         if (user) {
-            dispatch(login(user))
+            dispatch(logInWithGoogleProviderAsync(user))
             console.log('from authstate changed')
         } else {
             dispatch(logout(false))
@@ -54,13 +54,24 @@ const Header = () => {
                     <div class="navbar-item">
                         <div class="buttons">
                             {!authState.isLoggedIn ? (
+
                                 <a class="button is-primary" onClick={handleSignIn}>
                                     <strong>Log in</strong>
                                 </a>
+
                             ) : (
-                                <a class="button is-light" onClick={handleSignOut}>
-                                    Log out
+                                <>
+                                    <a class="navbar-item">
+                                    <img src={authState.profilePicUrl}/>
+                                    </a>
+                                    <a class="navbar-item">
+                                    {authState.userName}
+                                    </a>
+                                    <a class="button is-light" onClick={handleSignOut}>
+                                        Log out
                                 </a>
+                                </>
+
                             )}
 
 
