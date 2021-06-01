@@ -6,14 +6,20 @@ import { logInWithGoogleProviderAsync, logOutAsync, login, logout } from '../fea
 const Header = () => {
     const authState = useSelector(state => state.auth)
     const dispatch = useDispatch()
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-            dispatch(login(user))
-            console.log('from authstate changed')
-        } else {
-            dispatch(logout(false))
-        }
-    })
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged(function (user) {
+            if (user) {
+                dispatch(login(user))
+                console.log('from authstate changed')
+            } else {
+                dispatch(logout(false))
+            }
+        })
+
+        // cleanup subscription
+        return unsubscribe
+    }, [])
+    
 
     function handleSignIn(e) {
         e.preventDefault()

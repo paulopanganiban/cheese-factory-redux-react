@@ -2,9 +2,9 @@ import React from 'react'
 
 const ChatList = ({message}) => {
     return (
-        <div>
-            <h1></h1>
-        </div>
+        <li>
+            <h1>{message.text}</h1>
+        </li>
     )
 }
 
