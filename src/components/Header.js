@@ -8,7 +8,7 @@ const Header = () => {
     const dispatch = useDispatch()
     auth.onAuthStateChanged(function (user) {
         if (user) {
-            dispatch(logInWithGoogleProviderAsync(user))
+            dispatch(login(user))
             console.log('from authstate changed')
         } else {
             dispatch(logout(false))
