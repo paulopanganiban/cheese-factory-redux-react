@@ -13,6 +13,18 @@ import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import SignUp from './components/SignUp';
 function App() {
+  useEffect(() => {
+    // activate listener
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        // user is logged in
+        // dispatch(login({}))
+      } else {
+        // user is logged out
+        // dispatch(logout())
+      }
+    })
+  }, [])
   return (
     <AppContainer>
       <Router>
@@ -29,14 +41,8 @@ function App() {
           <Route path="/signup">
             <SignUp />
           </Route>
-
         </Switch>
       </Router>
-
-      <div className="">
-
-      </div>
-
     </AppContainer>
   );
 }

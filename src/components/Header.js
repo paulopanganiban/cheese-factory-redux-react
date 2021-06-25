@@ -18,7 +18,7 @@ const Header = () => {
                         title='Sign In'
                     />
                 </StyledLink>
-                <StyledLink to="signout">
+                <StyledLink to="/signup">
                     <HeaderOptions
                         title='Sign Up'
 

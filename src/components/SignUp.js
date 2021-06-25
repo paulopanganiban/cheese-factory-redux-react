@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button, TextField } from '@material-ui/core';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
-import FacebookIcon from '@material-ui/icons/Facebook';
 import { Link } from 'react-router-dom';
 function SignUp() {
     return (
