@@ -1,50 +1,58 @@
 import React from 'react'
 import styled from 'styled-components'
 import HeaderOptions from './HeaderOptions'
-import HomeIcon from '@material-ui/icons/Home'
-
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 const Header = () => {
-    const profilePictureUrl = 'https://www.heroesofnewerth.com/images/heroes/114/icon_128.jpg'
     return (
         <HeaderContainer>
             <HeaderLeft>
-                <HeaderImg src="https://i.pinimg.com/originals/0b/2e/93/0b2e9309f9fedf80f24bf650bae502a3.png" alt="" />
             </HeaderLeft>
             <HeaderRight>
-                <HeaderOptions
-                Icon={HomeIcon}
-                title='Home' />
-                <HeaderOptions
-                avatar={profilePictureUrl}
-                title='John Doe' />
+                <StyledLink to="/signin">
+                    <HeaderOptions
+                        title='Sign In'
+                    />
+                </StyledLink>
+                <StyledLink to="signout">
+                    <HeaderOptions
+                        title='Sign Up'
+
+                    />
+                </StyledLink>
+
             </HeaderRight>
         </HeaderContainer>
     )
 }
 
 export default Header
-const HeaderRight = styled.div`
+const StyledLink = styled(Link)`
+text-decoration: none;
+`
+const HeaderLeft = styled.div`
 display: flex;
 align-items: center;
 `
-const HeaderImg = styled.img`
-object-fit: contain;
-height: 40px;
-margin-right: 10px;
-`
-const HeaderLeft = styled.div`
-
+const HeaderRight = styled.div`
+display: flex;
+align-items: center;
 `
 const HeaderContainer = styled.div`
 position: sticky;
 top: 0;
 z-index: 999;
 display: flex;
-align-items: center;
-justify-content: space-evenly;
+justify-content: space-between;
 border-bottom: 0.1px solid lightgray;
 padding-top: 10px;
 padding-bottom: 10px;
 width: 100%;
+height: 64px;
+background-image: none;
+background-color: rgb(86, 100, 210);
 `

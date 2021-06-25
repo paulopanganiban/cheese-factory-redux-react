@@ -1,16 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Avatar } from '@material-ui/core'
-
-function HeaderOptions({ title, Icon, avatar }) {
+import styled from 'styled-components'
+const HeaderOptions = ({ title, Icon, avatar, onClick }) => {
     return (
         <HeaderOptionsContainer>
-            {Icon && <Icon className="headerOption__icon" />}
+            {Icon && <Icon className="headerOptions__icon" />}
             {avatar && (
-                <Avatar className="headerOption__icon"
-                    src={avatar} />
+                <Avatar className="headerOptions__icon" 
+                src={avatar}/>
             )}
-            <h3 className="headerOption__title">
+            <h3 className="headerOptions__title">
                 {title}
             </h3>
         </HeaderOptionsContainer>
@@ -18,18 +17,21 @@ function HeaderOptions({ title, Icon, avatar }) {
 }
 
 export default HeaderOptions
-
 const HeaderOptionsContainer = styled.div`
 display: flex;
-flex-direction: column;
 align-items: center;
 margin-right: 20px;
-color: gray;
 cursor: pointer;
-:hover { color: black;}
- > .headerOption__icon {
-     object-fit: contain;
-     height: 45px !important;
-     width: 45px !important;
+color: white;
+ :hover {
+     color: #272727;
+     transition: all 0.2s ease-in-out;
  }
+ > .headerOptions__icon {
+     object-fit: contain;
+     width: 45px !important;
+     height: 45px !important;
+
+ }
+
 `
