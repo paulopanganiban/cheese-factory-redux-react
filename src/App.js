@@ -9,6 +9,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Homepage from './pages/Homepage';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import SignUp from './components/SignUp';
@@ -31,6 +32,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
+            <Homepage />
           </Route>
           <Route path="/signin">
             <SignIn />

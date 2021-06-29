@@ -10,13 +10,13 @@ const SignIn = () => {
             <h1>Sign in</h1>
             <p>Sign in on the internal platform</p>
             <ButtonsContainer>
-                <StyledButton variant="contained" color="primary">
+                <StyledButton variant="contained">
                     <FacebookIcon />LOGIN WITH FACEBOOK
                 </StyledButton>
                 {
                     '         '
                 }
-                <StyledButton variant="contained" color="primary">
+                <StyledButton variant="contained">
                     <TagFacesIcon />LOGIN WITH GOOGLE
                 </StyledButton>
             </ButtonsContainer>
@@ -37,7 +37,7 @@ const SignIn = () => {
                         label="Password"
                         variant="outlined"
                     />
-                    <StyledButton className="form__button" variant="contained" color="primary"
+                    <StyledButton className="form__button" variant="contained"
                     type="submit"
                     >
                         SIGN IN NOW
@@ -72,6 +72,7 @@ margin-top: 10px;
  }
  `
 const StyledButton = styled(Button)`
+background-color: #000;
 `
 const ButtonsContainer = styled.div`
 margin-top: 20px;

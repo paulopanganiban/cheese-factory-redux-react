@@ -38,7 +38,7 @@ function SignUp() {
                         label="Password"
                         variant="outlined"
                     />
-                    <StyledButton className="form__button" variant="contained" color="primary"
+                    <StyledButton className="form__button" variant="contained"
                         type="submit"
                     >
                         SIGN UP NOW

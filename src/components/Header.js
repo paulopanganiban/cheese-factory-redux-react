@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import HeaderOptions from './HeaderOptions'
+import logoHeader2 from '../images/logoHeader2.svg'
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,6 +12,9 @@ const Header = () => {
     return (
         <HeaderContainer>
             <HeaderLeft>
+                <StyledLink to='/'>
+                <HeaderImg src={logoHeader2}/>
+                </StyledLink>
             </HeaderLeft>
             <HeaderRight>
                 <StyledLink to="/signin">
@@ -31,6 +35,12 @@ const Header = () => {
 }
 
 export default Header
+const HeaderImg = styled.img`
+object-fit: contain;
+height: 70px;
+margin-left: 20px;
+cursor: pointer;
+`
 const StyledLink = styled(Link)`
 text-decoration: none;
 `
@@ -54,5 +64,5 @@ padding-bottom: 10px;
 width: 100%;
 height: 64px;
 background-image: none;
-background-color: rgb(86, 100, 210);
+background-color: black;
 `
