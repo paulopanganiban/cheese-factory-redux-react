@@ -4,9 +4,18 @@ import { Button, TextField } from '@material-ui/core';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'
 const SignIn = () => {
     return (
-        <SignInContainer>
+        <SignInContainer
+            initial={{
+                marginTop: -999,
+            }}
+            animate={{
+                marginTop: 0,
+                opacity: 1,
+            }}
+        >
             <h1>Sign in</h1>
             <p>Sign in on the internal platform</p>
             <ButtonsContainer>
@@ -38,7 +47,7 @@ const SignIn = () => {
                         variant="outlined"
                     />
                     <StyledButton className="form__button" variant="contained"
-                    type="submit"
+                        type="submit"
                     >
                         SIGN IN NOW
                     </StyledButton>
@@ -72,12 +81,11 @@ margin-top: 10px;
  }
  `
 const StyledButton = styled(Button)`
-background-color: #000;
 `
 const ButtonsContainer = styled.div`
 margin-top: 20px;
 `
-const SignInContainer = styled.div`
+const SignInContainer = styled(motion.div)`
 display: flex;
 flex-wrap: wrap;
 flex-direction: column;

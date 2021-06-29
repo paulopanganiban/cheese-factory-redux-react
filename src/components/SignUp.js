@@ -2,9 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'
 function SignUp() {
     return (
-        <SignInContainer>
+        <SignInContainer
+            initial={{
+                marginTop: -999,
+            }}
+            animate={{
+                marginTop: 0,
+                opacity: 1,
+            }}
+        >
             <h1>Create new account</h1>
             <p>Use your email to create a new account</p>
             <FormContainer>
@@ -77,7 +86,7 @@ const StyledButton = styled(Button)`
 const ButtonsContainer = styled.div`
 margin-top: 20px;
 `
-const SignInContainer = styled.div`
+const SignInContainer = styled(motion.div)`
 display: flex;
 flex-wrap: wrap;
 flex-direction: column;

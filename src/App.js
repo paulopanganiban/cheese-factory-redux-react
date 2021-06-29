@@ -4,10 +4,8 @@ import { auth } from './firebase';
 import Header from './components/Header'
 import styled from 'styled-components'
 import {
-  BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Homepage from './pages/Homepage';
 import SignIn from './components/SignIn';
@@ -28,23 +26,23 @@ function App() {
   }, [])
   return (
     <AppContainer>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-          <Route path="/signin">
-            <SignIn />
-          </Route>
-          <Route path="/signout">
-            <SignOut />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-        </Switch>
-      </Router>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+        <Route path="/signin">
+          <SignIn />
+        </Route>
+
+        {/* Shorter code for a single component */}
+        <Route path="/signout" component={SignOut}/>
+        
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+      </Switch>
+
     </AppContainer>
   );
 }

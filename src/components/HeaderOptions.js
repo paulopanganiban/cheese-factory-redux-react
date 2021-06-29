@@ -24,7 +24,7 @@ margin-right: 20px;
 cursor: pointer;
 color: white;
  :hover {
-     color: #272727;
+     color: #b3b3b3;
      transition: all 0.2s ease-in-out;
  }
  > .headerOptions__icon {
