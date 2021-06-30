@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Button, TextField } from '@material-ui/core';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'
+import { auth, signInWithGoogle } from '../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAuthStatus, signInWithGoogleAsync } from '../features/authSlice';
 const SignIn = () => {
+    const dispatch = useDispatch()
+    const authStatus = useSelector(selectAuthStatus)
     return (
         <SignInContainer
             initial={{
@@ -25,7 +30,9 @@ const SignIn = () => {
                 {
                     '         '
                 }
-                <StyledButton variant="contained">
+                <StyledButton variant="contained"
+                onClick={() => {dispatch(signInWithGoogleAsync())}}
+                >
                     <TagFacesIcon />LOGIN WITH GOOGLE
                 </StyledButton>
             </ButtonsContainer>
@@ -56,7 +63,7 @@ const SignIn = () => {
             <div className="wrapper">
                 <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
             </div>
-        </SignInContainer>
+        </SignInContainer >
     )
 }
 

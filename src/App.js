@@ -11,6 +11,7 @@ import Homepage from './pages/Homepage';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import SignUp from './components/SignUp';
+import Footer from './components/Footer';
 function App() {
   useEffect(() => {
     // activate listener
@@ -42,7 +43,7 @@ function App() {
           <SignUp />
         </Route>
       </Switch>
-
+      <Footer/>
     </AppContainer>
   );
 }
