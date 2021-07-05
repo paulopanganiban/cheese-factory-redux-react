@@ -12,6 +12,7 @@ import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer';
+import MakeAdmin from './components/MakeAdmin';
 function App() {
   useEffect(() => {
     // activate listener
@@ -38,6 +39,7 @@ function App() {
 
         {/* Shorter code for a single component */}
         <Route path="/signout" component={SignOut}/>
+        <Route path="/makeadmin" component={MakeAdmin}/>
         
         <Route path="/signup">
           <SignUp />

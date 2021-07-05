@@ -31,6 +31,7 @@ const SignIn = () => {
                     '         '
                 }
                 <StyledButton variant="contained"
+                // pano po kaya okay na logic for disable and isdirty?
                 onClick={() => {dispatch(signInWithGoogleAsync())}}
                 >
                     <TagFacesIcon />LOGIN WITH GOOGLE

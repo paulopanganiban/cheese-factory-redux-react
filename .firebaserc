@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "cheese-factory-1d829"
+    "default": "cheese-factory-1d829",
+    "dummy-test": "dummy-585b0"
   }
 }
