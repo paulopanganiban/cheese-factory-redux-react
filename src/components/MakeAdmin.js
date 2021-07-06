@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components'
-// import { functions } from '../firebase';
+import { functions } from '../firebase';
 import firebase from 'firebase'
 function MakeAdmin() {
     const [email, setEmail] = useState('')
@@ -11,7 +11,7 @@ function MakeAdmin() {
         console.log(email)
         // call here
         // making a reference
-        const addAdminRole = firebase.functions().httpsCallable('addAdminRole');
+        const addAdminRole = functions.httpsCallable('addAdminRole');
         // call and pass the email data
         addAdminRole({ email: email })
         .then(result => {

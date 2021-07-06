@@ -10,7 +10,7 @@ function Homepage() {
                 initial={{ scale: 2 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5 }}
-            >PARA SA PANG KABUHAYAN SHOWCASE, BOK!!!</motion.h1>
+            ></motion.h1>
         </HomepageContainer>
     )
 }

@@ -5,7 +5,8 @@ import Header from './components/Header'
 import styled from 'styled-components'
 import {
   Switch,
-  Route
+  Route,
+  useHistory,
 } from "react-router-dom";
 import Homepage from './pages/Homepage';
 import SignIn from './components/SignIn';
@@ -13,16 +14,30 @@ import SignOut from './components/SignOut';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer';
 import MakeAdmin from './components/MakeAdmin';
+import { login, logout, selectUser } from './features/authSlice';
 function App() {
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const userState = useSelector(selectUser)
   useEffect(() => {
     // activate listener
     auth.onAuthStateChanged(user => {
       if (user) {
         // user is logged in
-        // dispatch(login({}))
+        // get role
+        user.getIdTokenResult().then(idTokenResult => {
+          dispatch(login({
+            email: user.email,
+            uid: user.uid,
+            displayName: user.displayName,
+            photoUrl: user.photoURL,
+            admin: idTokenResult.claims.admin,
+          }))
+        })
+        history.push('/')
       } else {
         // user is logged out
-        // dispatch(logout())
+        dispatch(logout())
       }
     })
   }, [])
@@ -38,14 +53,18 @@ function App() {
         </Route>
 
         {/* Shorter code for a single component */}
-        <Route path="/signout" component={SignOut}/>
-        <Route path="/makeadmin" component={MakeAdmin}/>
-        
+        <Route path="/signout" component={SignOut} />
+        <Route path="/makeadmin" component={MakeAdmin} />
+        {
+          
+        <Route path="/makeadmin" component={MakeAdmin} />
+        }
+
         <Route path="/signup">
           <SignUp />
         </Route>
       </Switch>
-      <Footer/>
+      <Footer />
     </AppContainer>
   );
 }

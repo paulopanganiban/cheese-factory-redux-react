@@ -1,14 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button, TextField } from '@material-ui/core';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'
-import { auth, signInWithGoogle } from '../firebase';
+import { auth, provider, } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthStatus, signInWithGoogleAsync } from '../features/authSlice';
 const SignIn = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const signInWithGoogle = (e) => {
+        e.preventDefault()
+        setIsLoading(true)
+        auth.signInWithPopup(provider)
+        .then(result => {
+            setIsLoading(false)
+            console.log(result)
+        })
+    }
     const dispatch = useDispatch()
     const authStatus = useSelector(selectAuthStatus)
     return (
@@ -31,8 +41,9 @@ const SignIn = () => {
                     '         '
                 }
                 <StyledButton variant="contained"
+                disabled={isLoading}
                 // pano po kaya okay na logic for disable and isdirty?
-                onClick={() => {dispatch(signInWithGoogleAsync())}}
+                onClick={signInWithGoogle}
                 >
                     <TagFacesIcon />LOGIN WITH GOOGLE
                 </StyledButton>
