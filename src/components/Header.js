@@ -27,15 +27,16 @@ const Header = ({ currentUser }) => {
             </HeaderLeft>
             <HeaderRight>
                 {currentUser ?
-                
-                <SignedInLinks>
-                    <StyledAvatar src={currentUser?.photoUrl} />
-                    <StyledLink onClick={logoutOfApp}>
-                        <HeaderOptions
-                            title='Sign out'
-                        />
-                    </StyledLink>
-                </SignedInLinks> :
+
+                    <SignedInLinks>
+                        <StyledAvatar src={currentUser?.photoUrl} />
+                        <span onClick={logoutOfApp}>
+                            <HeaderOptions
+                                title='Sign out'
+                            />
+                        </span>
+
+                    </SignedInLinks> :
 
                     <SignedOutLinks>
                         <StyledLink to="/signin">
@@ -50,7 +51,7 @@ const Header = ({ currentUser }) => {
                             />
                         </StyledLink>
                     </SignedOutLinks>}
-                    
+
             </HeaderRight>
         </HeaderContainer>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar } from '@material-ui/core'
 import styled from 'styled-components'
-const HeaderOptions = ({ title, Icon, avatar, onClick }) => {
+const HeaderOptions = ({ title, Icon, avatar }) => {
     return (
         <HeaderOptionsContainer>
             {Icon && <Icon className="headerOptions__icon" />}
