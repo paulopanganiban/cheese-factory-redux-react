@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import Directory from '../components/Directory'
 import { motion } from 'framer-motion'
 function Homepage() {
+    // https://www.youtube.com/watch?v=Y0-qdp-XBJg
+    // react router dom
+    
     return (
         <HomepageContainer>
             <Directory />

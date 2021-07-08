@@ -11,16 +11,25 @@ import Homepage from './pages/Homepage';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import SignUp from './components/SignUp';
+import { login } from './features/auth/authSlice';
+import { logout } from './features/auth/authSlice';
 function App() {
+  const dispatch = useDispatch()
   useEffect(() => {
     // activate listener
     auth.onAuthStateChanged(user => {
       if (user) {
         // user is logged in
-        // dispatch(login({}))
+        dispatch(login({
+          email: user.email,
+          uid: user.uid,
+          displayName: user.displayName,
+          photoUrl: user.photoURL,
+          isAdmin: user.isAdmin,
+        }))
       } else {
         // user is logged out
-        // dispatch(logout())
+        dispatch(logout())
       }
     })
   }, [])
