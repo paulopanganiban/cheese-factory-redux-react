@@ -43,7 +43,7 @@ function App() {
   }, [])
   return (
     <AppContainer>
-      <Header />
+      <Header currentUser={userState} />
       <Switch>
         <Route exact path="/">
           <Homepage />

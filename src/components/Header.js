@@ -1,40 +1,70 @@
 import React from 'react'
 import styled from 'styled-components'
 import HeaderOptions from './HeaderOptions'
+import Avatar from '@material-ui/core/Avatar';
 import logoHeader2 from '../images/logoHeader2.svg'
+import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
-  } from "react-router-dom";
-const Header = () => {
+} from "react-router-dom";
+import { auth } from '../firebase';
+import { logout } from '../features/authSlice';
+const Header = ({ currentUser }) => {
+    const dispatch = useDispatch()
+    function logoutOfApp() {
+        dispatch(logout())
+        auth.signOut();
+    }
     return (
         <HeaderContainer>
             <HeaderLeft>
                 <StyledLink to='/'>
-                <HeaderImg src={logoHeader2}/>
+                    <HeaderImg src={logoHeader2} />
                 </StyledLink>
             </HeaderLeft>
             <HeaderRight>
-                <StyledLink to="/signin">
-                    <HeaderOptions
-                        title='Sign In'
-                    />
-                </StyledLink>
-                <StyledLink to="/signup">
-                    <HeaderOptions
-                        title='Sign Up'
+                {currentUser ? <SignedInLinks>
+                    <StyledAvatar src={currentUser?.photoUrl} />
+                    <StyledLink onClick={logoutOfApp}>
+                        <HeaderOptions
+                            title='Sign out'
+                        />
+                    </StyledLink>
+                </SignedInLinks> :
+                    <SignedOutLinks>
+                        <StyledLink to="/signin">
+                            <HeaderOptions
+                                title='Sign In'
+                            />
+                        </StyledLink>
+                        <StyledLink to="/signup">
+                            <HeaderOptions
+                                title='Sign Up'
 
-                    />
-                </StyledLink>
-
+                            />
+                        </StyledLink>
+                    </SignedOutLinks>}
             </HeaderRight>
         </HeaderContainer>
     )
 }
 
 export default Header
+const StyledAvatar = styled(Avatar)`
+cursor: pointer;
+margin-right: 10px;
+`
+const SignedOutLinks = styled.div`
+display: flex;
+align-items: center;
+`
+const SignedInLinks = styled.div`
+display: flex;
+align-items: center;
+`
 const HeaderImg = styled.img`
 object-fit: contain;
 height: 70px;
