@@ -23,6 +23,7 @@ align-items: center;
 margin-right: 20px;
 cursor: pointer;
 color: white;
+transition: 0.2s ease-in-out;
  :hover {
      color: #b3b3b3;
      transition: all 0.2s ease-in-out;

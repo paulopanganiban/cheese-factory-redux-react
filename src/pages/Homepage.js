@@ -3,9 +3,6 @@ import styled from 'styled-components'
 import Directory from '../components/Directory'
 import { motion } from 'framer-motion'
 function Homepage() {
-    // https://www.youtube.com/watch?v=Y0-qdp-XBJg
-    // react router dom
-    
     return (
         <HomepageContainer>
             <Directory />
@@ -13,7 +10,7 @@ function Homepage() {
                 initial={{ scale: 2 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5 }}
-            >PARA SA PANG KABUHAYAN SHOWCASE, BOK!!!</motion.h1>
+            ></motion.h1>
         </HomepageContainer>
     )
 }
