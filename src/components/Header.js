@@ -26,7 +26,9 @@ const Header = ({ currentUser }) => {
                 </StyledLink>
             </HeaderLeft>
             <HeaderRight>
-                {currentUser ? <SignedInLinks>
+                {currentUser ?
+                
+                <SignedInLinks>
                     <StyledAvatar src={currentUser?.photoUrl} />
                     <StyledLink onClick={logoutOfApp}>
                         <HeaderOptions
@@ -34,6 +36,7 @@ const Header = ({ currentUser }) => {
                         />
                     </StyledLink>
                 </SignedInLinks> :
+
                     <SignedOutLinks>
                         <StyledLink to="/signin">
                             <HeaderOptions
@@ -47,6 +50,7 @@ const Header = ({ currentUser }) => {
                             />
                         </StyledLink>
                     </SignedOutLinks>}
+                    
             </HeaderRight>
         </HeaderContainer>
     )
