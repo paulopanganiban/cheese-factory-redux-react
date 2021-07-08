@@ -18,10 +18,16 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
 exports.addAdminRole = functions.https.onCall((data, context) => {
     // data
     // any custom data, email address to make an admin (data.email)
-    // context
+    // context contains information about the user
     // auth information
 
     // get user and add custom claim (admin)
+
+    // check request if made by an admin
+    // remove this if no admin is set yet
+    if(context.auth.token.admin !== true) {
+        return { error: 'Only admins can add other admins, suckah'}
+    }
     return admin.auth().getUserByEmail(data.email).then(user => {
         // eto yung pinasa nating email
         return admin.auth().setCustomUserClaims(user.uid, {
