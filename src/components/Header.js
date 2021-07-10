@@ -8,16 +8,19 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useHistory
 } from "react-router-dom";
 import { auth } from '../firebase';
 import { logout } from '../features/authSlice';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const Header = ({ currentUser }) => {
+    const history = useHistory()
     const dispatch = useDispatch()
     function logoutOfApp() {
         dispatch(logout())
         auth.signOut();
+        history.push('/')
     }
     return (
         <HeaderContainer>

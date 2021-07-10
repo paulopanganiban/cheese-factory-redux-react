@@ -16,6 +16,9 @@ import Footer from './components/Footer';
 import MakeAdmin from './components/MakeAdmin';
 import { login, logout, selectUser } from './features/authSlice';
 import Admin from './components/Admin';
+import LandingPage from './pages/LandingPage';
+import PrivateRoutes from './pages/PrivateRoutes';
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   const dispatch = useDispatch()
   const userState = useSelector(selectUser)
@@ -50,6 +53,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Homepage />
+          <LandingPage/>
         </Route>
         <Route path="/signin">
           <SignIn />
@@ -58,9 +62,17 @@ function App() {
         {/* Shorter code for a single component */}
         <Route path="/signout" component={SignOut} />
         <Route path="/makeadmin" component={MakeAdmin} />
-
-
         <Route path="/signup">
+        {/* private routes start */}
+        {/* <Route component={LandingPage} /> */}
+        <ProtectedRoute
+        exact
+        path="/munchbobadmin"
+        component={Admin}
+        />
+
+
+        {/* <Route path="*" component={() => "404 not found"}/> */}
           <SignUp />
         </Route>
       </Switch>

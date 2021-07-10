@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Admin = () => {
     return (
         <AdminContainer>
-            
+                <h1>MUNCH BOB ADMIN 😎</h1>
         </AdminContainer>
     )
 }
