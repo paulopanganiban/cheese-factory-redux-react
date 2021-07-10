@@ -30,9 +30,8 @@ transition: 0.2s ease-in-out;
  }
  > .headerOptions__icon {
      object-fit: contain;
-     width: 45px !important;
-     height: 45px !important;
-
+     width: 30px !important;
+     height: 30px !important;
  }
 
 `

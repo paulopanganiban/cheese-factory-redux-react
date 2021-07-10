@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth } from './firebase';
+import { addUserToDatabase, auth, handleUserProfile } from './firebase';
 import Header from './components/Header'
 import styled from 'styled-components'
 import {
@@ -31,9 +31,10 @@ function App() {
             uid: user.uid,
             displayName: user.displayName,
             photoUrl: user.photoURL,
-            admin: idTokenResult.claims.admin,
+            role: idTokenResult.claims.userRole,
           }))
         })
+        addUserToDatabase(user, 'Test address')
         history.push('/')
       } else {
         // user is logged out

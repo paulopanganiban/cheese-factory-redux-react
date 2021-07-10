@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import { auth } from '../firebase';
 import { logout } from '../features/authSlice';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const Header = ({ currentUser }) => {
     const dispatch = useDispatch()
     function logoutOfApp() {
@@ -24,8 +25,14 @@ const Header = ({ currentUser }) => {
                 <StyledLink to='/'>
                     <HeaderImg src={logoHeader2} />
                 </StyledLink>
+                <StyledLink to='/makeadmin'>
+                    <HeaderImg src={logoHeader2} />
+                </StyledLink>
             </HeaderLeft>
             <HeaderRight>
+                <StyledLink to='/shopping-cart'>
+                    <HeaderOptions Icon={ShoppingCartIcon}/>
+                </StyledLink>
                 {currentUser ?
 
                     <SignedInLinks>
