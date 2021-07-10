@@ -12,8 +12,8 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
 
     // check request if made by an admin
     // remove this if no admin is set yet
-    if(context.auth.token.userRole !== 'admin') {
-        return { error: 'Only admins can add other admins, suckah'}
+    if (context.auth.token.userRole !== 'admin') {
+        return { error: 'Only admins can add other admins, suckah' }
     }
     return admin.auth().getUserByEmail(data.email).then(user => {
         // eto yung pinasa nating email
@@ -47,4 +47,24 @@ exports.addCustomerRoleOnRegister = functions.https.onCall((data, context) => {
             return err
         })
     })
+})
+
+// Add Customer Role on sign up
+exports.processSignUp = functions.auth.user().onCreate(async (user) => {
+    if (user.email) {
+        const customClaims = {
+            userRole: 'customer',
+        }
+        try {
+            // Set custom user claim on newly created user
+           return await admin.auth().setCustomUserClaims(user.uid, customClaims).then(() => {
+               return {
+                   message: `Success! ${user.email} is now registered as a customer`
+               }
+           })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 })

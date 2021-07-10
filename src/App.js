@@ -33,8 +33,11 @@ function App() {
             photoUrl: user.photoURL,
             role: idTokenResult.claims.userRole,
           }))
+          addUserToDatabase(user, {
+            userRole: idTokenResult.claims.userRole,
+            address: 'Test address',
+          })
         })
-        addUserToDatabase(user, 'Test address')
         history.push('/')
       } else {
         // user is logged out
