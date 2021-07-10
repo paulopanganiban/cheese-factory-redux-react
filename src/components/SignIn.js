@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import { Button, TextField } from '@material-ui/core';
 import TagFacesIcon from '@material-ui/icons/TagFaces';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion'
-import { auth, provider, } from '../firebase';
+import { auth, handleUserProfile, provider, } from '../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthStatus, signInWithGoogleAsync } from '../features/authSlice';
 const SignIn = () => {
+    const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
     const signInWithGoogle = (e) => {
         e.preventDefault()
@@ -17,6 +18,7 @@ const SignIn = () => {
         .then(result => {
             setIsLoading(false)
             console.log(result)
+            history.push('/')
         })
     }
     const dispatch = useDispatch()

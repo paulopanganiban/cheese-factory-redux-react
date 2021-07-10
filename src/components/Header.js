@@ -25,9 +25,6 @@ const Header = ({ currentUser }) => {
                 <StyledLink to='/'>
                     <HeaderImg src={logoHeader2} />
                 </StyledLink>
-                <StyledLink to='/makeadmin'>
-                    <HeaderImg src={logoHeader2} />
-                </StyledLink>
             </HeaderLeft>
             <HeaderRight>
                 <StyledLink to='/shopping-cart'>

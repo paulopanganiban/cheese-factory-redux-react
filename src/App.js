@@ -15,8 +15,8 @@ import SignUp from './components/SignUp';
 import Footer from './components/Footer';
 import MakeAdmin from './components/MakeAdmin';
 import { login, logout, selectUser } from './features/authSlice';
+import Admin from './components/Admin';
 function App() {
-  const history = useHistory()
   const dispatch = useDispatch()
   const userState = useSelector(selectUser)
   useEffect(() => {
@@ -38,7 +38,6 @@ function App() {
             address: 'Test address',
           })
         })
-        history.push('/')
       } else {
         // user is logged out
         dispatch(logout())
@@ -59,10 +58,7 @@ function App() {
         {/* Shorter code for a single component */}
         <Route path="/signout" component={SignOut} />
         <Route path="/makeadmin" component={MakeAdmin} />
-        {
-          
-        <Route path="/makeadmin" component={MakeAdmin} />
-        }
+
 
         <Route path="/signup">
           <SignUp />
