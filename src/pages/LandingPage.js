@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const LandingPage = () => {
     return (
         <div>
-            <h1>landing page</h1>
+            <h1>wtf page</h1>
             <Button>Loggin</Button>
         </div>
     )

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import HeaderOptions from './HeaderOptions'
 import Avatar from '@material-ui/core/Avatar';
 import logoHeader2 from '../images/logoHeader2.svg'
+
+import PersonIcon from '@material-ui/icons/Person';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
@@ -11,10 +14,22 @@ import {
     Link,
     useHistory
 } from "react-router-dom";
+import Modal from './Modal'
 import { auth } from '../firebase';
 import { logout } from '../features/authSlice';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const Header = ({ currentUser }) => {
+
+    const [showModal, setShowModal] = useState(false)
+    function openModal() {
+        setShowModal(prev => !prev)
+    }
+    const modalRef = useRef()
+    const closeModal = e => {
+        if (modalRef.current === e.target) {
+            setShowModal(false)
+        }
+    }
     const history = useHistory()
     const dispatch = useDispatch()
     function logoutOfApp() {
@@ -23,7 +38,7 @@ const Header = ({ currentUser }) => {
         history.push('/')
     }
     return (
-        <HeaderContainer>
+        <HeaderContainer ref={modalRef} onClick={closeModal}>
             <HeaderLeft>
                 <StyledLink to='/'>
                     <HeaderImg src={logoHeader2} />
@@ -31,16 +46,26 @@ const Header = ({ currentUser }) => {
             </HeaderLeft>
             <HeaderRight>
                 <StyledLink to='/shopping-cart'>
-                    <HeaderOptions Icon={ShoppingCartIcon}/>
+                    <HeaderOptions Icon={ShoppingCartIcon} />
                 </StyledLink>
                 {currentUser ?
 
                     <SignedInLinks>
-                        <StyledAvatar src={currentUser?.photoUrl} />
+                        <StyledAvatar src={currentUser?.photoUrl}
+                            onClick={openModal}
+                        />
+
+                        <Modal
+
+                            showModal={showModal}
+                            setShowModal={setShowModal}
+                            name={currentUser.displayName}
+                            Icon={PersonIcon}
+                            Icon2={SettingsIcon}
+                            logoutFunction={logoutOfApp}
+                        />
                         <span onClick={logoutOfApp}>
-                            <HeaderOptions
-                                title='Sign out'
-                            />
+
                         </span>
 
                     </SignedInLinks> :

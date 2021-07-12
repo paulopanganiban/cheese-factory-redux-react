@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
   useHistory,
+  Redirect
 } from "react-router-dom";
 import Homepage from './pages/Homepage';
 import SignIn from './components/SignIn';
@@ -19,6 +20,7 @@ import Admin from './components/Admin';
 import LandingPage from './pages/LandingPage';
 import PrivateRoutes from './pages/PrivateRoutes';
 import ProtectedRoute from './components/ProtectedRoute';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
 function App() {
   const dispatch = useDispatch()
   const userState = useSelector(selectUser)
@@ -53,7 +55,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Homepage />
-          <LandingPage/>
         </Route>
         <Route path="/signin">
           <SignIn />
@@ -62,9 +63,10 @@ function App() {
         {/* Shorter code for a single component */}
         <Route path="/signout" component={SignOut} />
         <Route path="/makeadmin" component={MakeAdmin} />
-        <Route path="/signup">
+        <Route path="/signup" component={SignUp}/>
+        <Route path="shopping-cart" component={ShoppingCart}/>
         {/* private routes start */}
-        {/* <Route component={LandingPage} /> */}
+
         <ProtectedRoute
         exact
         path="/munchbobadmin"
@@ -72,9 +74,9 @@ function App() {
         />
 
 
-        {/* <Route path="*" component={() => "404 not found"}/> */}
-          <SignUp />
-        </Route>
+        {/* <Route path="*" component={() => (<Redirect to="/"/>)}/> */}
+        <Route path="*" component={() => '404 not found'}/>
+        
       </Switch>
       <Footer />
     </AppContainer>
